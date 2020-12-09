@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from repositories import task_repository
+from repositories import user_repository
 
 #import a class called blueprint
 
@@ -19,12 +20,17 @@ def tasks():
 # return to the browser a new html form 
 @tasks_blueprint.route('/tasks/new')
 def new_task():
-    return render_template("tasks/new.html")
-
-
-
+    users = user_repository.select_all()
+    return render_template("tasks/new.html", all_users = users)
 
 # CREATE 
+@tasks_blueprint.route('/tasks', methods = ['POST'])
+def create_task():
+    #gather all data from the form 
+    # select a user object from the database 
+    # create a new task object 
+    # save the task to the db 
+    # redirect to the index 
 # POST '/tasks'
 
 # SHOW 
